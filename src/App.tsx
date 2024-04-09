@@ -3,6 +3,7 @@ import { Form } from "./components/Form"
 import { activityReducer,initialState } from "./reducers/activity-reducer"
 import { ActivityList } from "./components/ActivityList"
 
+
 function App() {
 
   const [state,dispatch]=useReducer(activityReducer,initialState)
@@ -21,6 +22,7 @@ function App() {
         <div className="max-w-4xl mx-auto">
           <Form
             dispatch={dispatch}
+            state={state}
           />
         </div>
 
@@ -28,6 +30,7 @@ function App() {
       <section className="p-10 mx-auto-max-w-4xl">
         <ActivityList
           activities={state.activities}
+          dispatch={dispatch}
         />
 
 
