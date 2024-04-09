@@ -3,6 +3,7 @@ export type Category={
     name:string
 }
 export type Activity={
+    id:string
     category:number,
     activityName:string,
     calories:number
