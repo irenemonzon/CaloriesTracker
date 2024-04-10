@@ -13,10 +13,15 @@ export const ActivityList = ({activities,dispatch}:ActivityListProps) => {
 
   const categoryName=useMemo(()=> (category:Activity['category'])=> 
     categories.map(cat=>cat.id===category ? cat.name:''),[activities])
+
+  const isEmptyActivities=useMemo(()=> activities.length===0 ,[activities])
+
   return (
     <>
-        <h2 className="text-4xl font-bold text-slate-600 text-center">Comida y actividades</h2>
-        {activities.map(activity=>(
+        <h2 className="text-4xl font-bold text-slate-600 text-center pb-10">Comida y actividades</h2>
+       {isEmptyActivities ? 
+       <p className="text-center ">No hay actividades aun...</p>: 
+        (activities.map(activity=>(
           <div 
             key={activity.id}
             className="px-5 py-10 bg-white flex justify-between">
@@ -56,7 +61,8 @@ export const ActivityList = ({activities,dispatch}:ActivityListProps) => {
 
           </div>
 
-        ))}
+        ))
+      )}
     </>
   )
 }
