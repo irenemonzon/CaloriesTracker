@@ -1,15 +1,16 @@
-import { useMemo,Dispatch } from "react"
+import { useMemo } from "react"
 import type { Activity } from "../types"
 import { categories } from "../data/categories"
 import {PencilSquareIcon, XCircleIcon} from '@heroicons/react/24/outline'
-import { ActivityActions } from "../reducers/activity-reducer"
+import { useActivity } from "../hooks/useActivity"
 
-type ActivityListProps={
-  activities:Activity[],
-  dispatch:Dispatch<ActivityActions>
-}
 
-export const ActivityList = ({activities,dispatch}:ActivityListProps) => {
+
+export const ActivityList = () => {
+
+  const {state,dispatch}=useActivity()
+
+  const {activities}=state
 
   const categoryName=useMemo(()=> (category:Activity['category'])=> 
     categories.map(cat=>cat.id===category ? cat.name:''),[activities])
